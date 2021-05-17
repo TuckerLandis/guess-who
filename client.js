@@ -18,6 +18,7 @@ function readyFunc() {
     //define person to guess and append
     let answer = pickPersonToGuess()
     $('#whoTarg').append(answer);
+    let guess = handleClick();
     
     
 
@@ -43,7 +44,7 @@ function putPeople() {
 
 
         let personAppender = $(`
-        <div class="pics" data-id="${personNum}">
+        <div class="pics" data-id="${personNum}" data-name="${person.name}">
         <img src="https://github.com/${person.githubUsername}.png?size=250" 
         alt="Profile image of ${person.name}">
         </div>
@@ -85,14 +86,21 @@ function handleClick(answer) {
 
 
     console.log('div clicked');
-    console.log($(this).data('id'));
-    compare(answer, $(this).data('id'))
-    // return $(this).data('id');
+    let guess = ($(this).data('id'));
+    console.log(answer);
+    
+    console.log(guess);
+    
+    compare(answer, guess)
+     return $(this).data('id');
    
 }
 
 function compare(answer, guess) {
-    if (answer == guess) {
+
+    console.log('in compare', answer, guess);
+    
+    if (answer === guess) {
         console.log('bingo');
         
     } else {
@@ -101,7 +109,7 @@ function compare(answer, guess) {
     }
 }
 
-
+// i think i am comparing a name to a data, and i dont want to 
 
 
 
