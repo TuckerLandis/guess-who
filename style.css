@@ -1,0 +1,9 @@
+.pics {
+    display: inline;
+    width: 250px; /*  attempting to shrink jacobs default pic */
+}
+
+header {
+    padding: 2em;
+    font-size: 22pt;
+}
