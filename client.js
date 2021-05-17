@@ -6,25 +6,44 @@ $(readyFunc);
 function readyFunc() {
     console.log('jquery loaded!');
 
+    // put people on dom
+    putPeople();
+
     // prompt user
 
 
-
-    for (let person of people) {
-        $('#target').append(`
-        <div class="pics">
-        <img src="https://github.com/${person.githubUsername}.png?size=250" alt="Profile image of ${person.name}">
-        </div>
-        `) // end append
-    } // end for loop
 } // end readyFunc
 
 
-function randomWho() {
-    
-}
+function putPeople() {
+    let personNum = 0;
 
-function randomNumber(min, max){
+
+    for (let person of people) {
+
+        // increments number
+        personNum++;
+        //assigns number as data   -- this is wrong? want data on div?
+        
+        $(person).data('num', personNum)
+        // appends person with image to dom
+        $('#target').append(`
+        <div class="pics">
+        <img src="https://github.com/${person.githubUsername}.png?size=250" 
+        alt="Profile image of ${person.name}">
+        </div>
+        `) // end append
+
+
+        console.log(personNum);
+        console.log($(person).data('num'));
+        
+
+    } // end loop
+
+} // end put people
+
+function randomNumber(min, max) {
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
 
