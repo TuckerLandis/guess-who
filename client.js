@@ -2,7 +2,7 @@ console.log('Here are all the available people:', people);
 
 $(readyFunc);
 
-const maxPeople = people.length
+const maxPeople = people.length;
 
 
 
@@ -11,11 +11,17 @@ function readyFunc() {
 
     //click listeners
     $('#target').on('click', '.pics', handleClick)
+    $('#target').on('click', '.pics', compare)
 
     // put people on dom
     putPeople();
+    //define person to guess and append
+    let answer = pickPersonToGuess()
+    $('#whoTarg').append(answer);
+    
+    
 
-    // prompt user
+    //clicked to answer
 
 
 } // end readyFunc
@@ -24,12 +30,15 @@ function readyFunc() {
 function putPeople() {
     let personNum = 0;
 
-
+    // this loops through 
     for (let person of people) {
 
         // increments number
         personNum++;
         //assigns number as data   -- this is wrong? want data on div?
+        $(person).data('num', personNum);
+        // console.log('this is the object data', $(person).data('num')); // sets data to object in array
+        
 
 
 
@@ -44,8 +53,8 @@ function putPeople() {
 
         
 
-        console.log('This is the variable:', personNum);
-        console.log('This is Data', $(personAppender.data('id')));
+        //console.log('This is the variable:', personNum);
+       // console.log('This is Div Data', $(personAppender.data('id')));
         
         
 
@@ -57,12 +66,40 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (1 + max - min) + min);
 }
 
+function pickPersonToGuess(){
+    let personToGuess = randomNumber(1, maxPeople);
 
-function handleClick() {
-    console.log('div clicked');
+    // need to get name from this number + object data append to top of page.
+    //loop through
+    // if statement -- compare to data, then append
+for (let person of people) {
+    if(personToGuess == $(person).data('num')) {
+        personToGuess = person.name;
+    } else {}
+} // end loop
     
+    return personToGuess;
+} // end Pick
+
+function handleClick(answer) {
+
+
+    console.log('div clicked');
+    console.log($(this).data('id'));
+    compare(answer, $(this).data('id'))
+    // return $(this).data('id');
+   
 }
 
+function compare(answer, guess) {
+    if (answer == guess) {
+        console.log('bingo');
+        
+    } else {
+        console.log('wrong guess or broken');
+        
+    }
+}
 
 
 
@@ -73,6 +110,11 @@ function handleClick() {
 // give each person a data number in loop ?
 // give user the name tied to data number, but random
 // on click, compare data number clicked and data number (name) given
+
+
+/// ????? put compare in handle click???
+
+// big issues with order of operations
 
 
 // scrap heap
