@@ -40,7 +40,7 @@ function putPeople() {
 } // end put people
 
 function randAnswer() {
-    let answer = randomNumber(1, maxPeople);
+    let answer = randomNumber(0, maxPeople);
     
     return answer;
 }
