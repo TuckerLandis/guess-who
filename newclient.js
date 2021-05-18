@@ -58,13 +58,16 @@ function compare() {
     console.log($(this).data('id'));
     if ($(this).data('id') !== answerReturn) {
         console.log('nope');
+        alert('Nope, try again!')
+        
         
     } else if ($(this).data('id') == answerReturn) {
         console.log('yes?');
+        if(confirm('Bingo!')){
+            window.location.reload();  
+        }
         
     }
     
     
-} // there is a bug sometimes on refresh, showing in line 54 or 43 "can't get name of undefined" // i feel like a blockhead
-// neeed to subtract answer return by 1 for zero indices // fixed i feel like a super genius
-
+} 
