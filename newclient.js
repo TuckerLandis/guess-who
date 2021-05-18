@@ -4,21 +4,25 @@ const maxPeople = people.length;
 
 $(readyNow);
 
-let answerReturn = randAnswer();
 
+let answerReturn = randAnswer();
 
 function readyNow() {
     console.log('jquery loaded!');
-    putPeople();
     putAnswer();
+    putPeople();
+    
+
+    // click listener
+    $('#target').on('click', '.pics', compare)
 }
 
 function putPeople() {
     // loop through array of people, assigning a data'num' to each
 
     for ( i = 0; i < people.length; i++) {
-        
-        $(people[i]).data('num', i);
+        let person = people[i];
+        $(person).data('num', i);
         let personAppender = $(`
         <div class="pics" data-id="${i}">
         <img src="https://github.com/${people[i].githubUsername}.png?size=250" 
@@ -27,7 +31,7 @@ function putPeople() {
         `);
 
         $('#target').append(personAppender) // end append   
-        console.log($(people[i].data));
+        console.log($(person).data('num'));
         
     } // end loop
 
@@ -43,6 +47,19 @@ function randomNumber(min, max) {
 }
 
 function putAnswer(){
-    let answerName = people[randAnswer()].name;
+    let answerName = people[answerReturn].name;
     $('#whoTarg').append(answerName);
 }
+
+function compare() {
+    console.log($(this).data('id'));
+    if ($(this).data('id') !== answerReturn) {
+        console.log('nope');
+        
+    } else if ($(this).data('id') == answerReturn) {
+        console.log('yes?');
+        
+    }
+    
+    
+} // this should compare the clicked divs ID with the Answer generated on pageload, it doesn't properly
