@@ -1,11 +1,13 @@
 console.log('Here are all the available people:', people);
 
-const maxPeople = people.length;
+const maxPeople = people.length-1; // crucial
 
 $(readyNow);
 
 
 let answerReturn = randAnswer();
+console.log(answerReturn);
+
 
 function readyNow() {
     console.log('jquery loaded!');
@@ -39,6 +41,7 @@ function putPeople() {
 
 function randAnswer() {
     let answer = randomNumber(1, maxPeople);
+    
     return answer;
 }
 
@@ -62,4 +65,6 @@ function compare() {
     }
     
     
-} // this should compare the clicked divs ID with the Answer generated on pageload, it doesn't properly
+} // there is a bug sometimes on refresh, showing in line 54 or 43 "can't get name of undefined" // i feel like a blockhead
+// neeed to subtract answer return by 1 for zero indices // fixed i feel like a super genius
+
