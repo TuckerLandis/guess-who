@@ -6,7 +6,7 @@ $(readyNow);
 
 
 let answerReturn = randAnswer();
-console.log(answerReturn);
+console.log(answerReturn); // number to compare to
 
 
 function readyNow() {
@@ -51,7 +51,7 @@ function randomNumber(min, max) {
 
 function putAnswer(){
     let answerName = people[answerReturn].name;
-    $('#whoTarg').append(answerName);
+    $('#whoTarg').append(answerName, '?');
 }
 
 function compare() {
